@@ -1,0 +1,755 @@
+:root {
+  /* Фіолетово-жовта схема, як у референсі притулку */
+  --bg: #5138ff;          /* основний фіолет */
+  --text: #ffffff;        /* білий текст */
+  --accent1: #ffd54c;     /* жовті елементи / блоки */
+  --accent2: #ff6a3d;     /* помаранчеві блоки */
+  --accent3: #ffb6da;     /* рожеві плашки */
+  --accentSoft: #7f67ff;  /* м’який фіолет для фонів */
+
+  --hover-ease: cubic-bezier(.2,.9,.2,1);
+  --shadow-strong: 0 26px 48px rgba(8,16,30,.14);
+  --shadow-soft: 0 14px 30px rgba(8,16,30,.10);
+  --header-offset: 88px; /* fallback, JS оновить при завантаженні */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: rgba(255,255,255,0.95);
+  color: #20103c;
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: 50;
+  transform: translateY(-120%);
+  transition: transform .18s ease, opacity .12s ease;
+  opacity: 0;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+.skip-link:focus,
+.skip-link:hover {
+  transform: translateY(0);
+  opacity: 1;
+  outline: none;
+}
+
+/* focus-visible improvements for keyboard users */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid rgba(127,103,255,0.22);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  overflow-x: hidden;
+
+  /* важливо: відступ зверху під фіксований хедер.
+     JS оновлює --header-offset і ставить padding на body (fallback використовує var). */
+  padding-top: var(--header-offset);
+}
+
+/* Хвиля three.js */
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===== HERO: заголовок ===== */
+
+.hero-text {
+  position: relative;
+  margin: 8px auto 50px;
+  text-align: center;
+  z-index: 3;
+  font-size: 3rem;
+  /* жорстке обмеження ширини в межах контентного контейнера */
+  width: min(1200px, 94%);
+  padding-inline: 6vw;
+  white-space: normal;
+
+  /* забезпечує, що при переході по якорю заголовок не ховається під хедером */
+  scroll-margin-top: calc(var(--header-offset, 88px) + 8px);
+}
+
+.hero-text h1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 120px);
+  text-transform: none;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 8px 20px rgba(0,0,0,0.45);
+  transform-origin: center;
+  cursor: default;
+
+  /* не дозволяємо заголовку виходити за межі контейнера */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* ====== СТОРІНКА ПРОЄКТНОЇ ГРУПИ «BEVAR ANIMALS UA» ====== */
+
+.support-main {
+  position: relative;
+  z-index: 6;
+  padding: 40px 6vw 140px; /* padding-top зменшено, бо body має padding-top */
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.support-tag {
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+}
+
+/* === 1. Головний жовтий блок з описом напряму === */
+
+.support-hero-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 40px;
+  margin-top: 10px;
+  padding: 42px 40px 46px;
+  border-radius: 40px;
+  background: var(--accent1);
+  color: #20103c;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  overflow: visible;
+}
+
+.support-hero-card__content {
+  position: relative;
+  z-index: 1;
+}
+
+.support-title {
+  font-size: clamp(24px, 2.6vw, 30px);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 12px;
+}
+
+.support-subtitle {
+  font-size: clamp(22px, 2.5vw, 28px);
+  margin-bottom: 24px;
+}
+
+.support-lead {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.support-text {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* правий кольоровий «колаж» */
+
+.support-hero-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.support-hero-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 120px;
+  gap: 14px;
+  width: 100%;
+}
+
+.support-hero-photo {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  padding: 12px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: flex-end;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #20103c;
+}
+
+/* фон-градієнт через pseudo (як запас) */
+.support-hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+/* Якщо присутній реальний img — приховуємо gradient-псевдо */
+.support-hero-photo.has-img::before {
+  background: none;
+  opacity: 1;
+}
+
+/* фото як внутрішній елемент */
+.support-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+/* текст/лейбл зверху фото */
+.support-hero-photo span {
+  position: relative;
+  z-index: 1;
+}
+
+/* абстрактні градієнти (fallback) */
+.support-hero-photo.ph1::before {
+  background: linear-gradient(135deg, #ffb6da, #ffd54c);
+}
+.support-hero-photo.ph2::before {
+  background: linear-gradient(135deg, #ffe57c, #7f67ff);
+}
+.support-hero-photo.ph3::before {
+  background: linear-gradient(135deg, #ff6a3d, #ffd54c);
+}
+.support-hero-photo.ph4::before {
+  background: linear-gradient(135deg, #7f67ff, #ffb6da);
+}
+
+/* === 2–3. Секції «Що таке наш напрямок?» / «Поточний фокус» === */
+
+.support-section {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 50px;
+  align-items: center;
+  position: relative; /* потрібно для абсолютної кнопки у правому-низ */
+}
+
+.support-section--reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+}
+
+.support-section__content {
+  color: #ffffff;
+}
+
+.support-section__content h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  margin-bottom: 20px;
+}
+
+.support-section__content p {
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.92;
+  margin-bottom: 10px;
+}
+
+.support-list {
+  margin: 12px 0 10px 18px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.support-list li {
+  margin-bottom: 6px;
+}
+
+.support-section__media {
+  position: relative;
+}
+
+/* Дубль CTA для секції "direction" — позиція: правий-низ секції */
+.support-section-cta {
+  position: absolute;
+  right: 22px;
+  bottom: -26px;
+  z-index: 2;
+  color: #20103c;
+  box-shadow: var(--shadow-strong);
+  border-radius: 999px;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  transition: transform .18s var(--hover-ease), box-shadow .18s ease;
+}
+.support-section-cta:hover,
+.support-section-cta:focus {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+}
+
+/* при маленьких екранах переводимо кнопку в потік (під текст) */
+@media (max-width: 900px) {
+  .support-section-cta {
+    position: static;
+    margin-top: 14px;
+    display: inline-flex;
+  }
+}
+
+/* кольорові картки замість фотографій (мають fallback градієнт) */
+.support-section-image {
+  position: relative;
+  border-radius: 40px;
+  min-height: 260px;
+  background: var(--accent3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+/* якщо є реальна картинка — показати її */
+.support-section-image.has-img .support-section-image__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  display: block;
+}
+
+/* приховуємо label-плашку поверх картинки */
+.support-section-image__label {
+  position: absolute;
+  left: 24px;
+  bottom: 22px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+/* specific gradients (fallback) */
+.img-direction {
+  background: linear-gradient(
+    135deg,
+    #ffd54c 0%,
+    #ffb6da 45%,
+    #5138ff 100%
+  );
+}
+
+.img-actions {
+  background: linear-gradient(
+    135deg,
+    #ff6a3d 0%,
+    #ffd54c 40%,
+    #5138ff 100%
+  );
+}
+
+/* === TEAM / carousel styles === */
+
+.team-section {
+  margin-top: 110px;
+}
+
+.team-header h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  margin: 6px 0 16px;
+}
+
+.team-header p {
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* carousel layout */
+.team-slider {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-window {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.team-window.team-window--cropped {
+  flex: 0 0 auto;
+  width: min(100%, var(--team-visible-width, 100%));
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.team-list {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease;
+  will-change: transform;
+  padding: 10px 0;
+}
+
+/* team-member visual (replaces previous .team-card) */
+.team-member {
+  flex: 0 0 clamp(240px, 28vw, 320px);
+  width: clamp(240px, 28vw, 320px);
+  background: #ffef99;
+  border-radius: 36px;
+  padding: 18px 18px 22px;
+  color: #20103c;
+ 
+  display: flex;
+  flex-direction: column;
+}
+
+.team-avatar-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.team-member h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.team-role {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.team-bio {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* navigation buttons for carousel */
+.team-button {
+  background: #ffb6da;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.team-button.prev {
+  background: #ffd54c;
+}
+.team-button:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.4); }
+.team-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* accessibility focus styles */
+.team-button:focus,
+.team-member:focus {
+  outline: 3px solid rgba(127,103,255,0.18);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+/* Hover interactions (limited selectors) */
+a, button, .team-member, .support-hero-photo, .support-section-image, .team-avatar-img, .hero-text h1 {
+  transition: color .24s ease, background-color .24s ease, transform .36s var(--hover-ease), box-shadow .36s ease, opacity .24s ease;
+}
+
+/* ----- Active nav style (не нав’язливо, зберігає загальний вигляд) ----- */
+.site-nav .nav-button.is-active {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  a, button, .team-member, .support-hero-photo, .support-section-image, .team-avatar-img, .hero-text h1 {
+    transition: none !important;
+    animation: none !important;
+  }
+  .team-list { transition: none !important; }
+}
+
+/* small screens */
+@media (max-width: 900px) {
+  .support-hero-card {
+    grid-template-columns: 1fr;
+    padding: 28px 24px 30px;
+  }
+
+  /* на малих екранах: СПОЧАТКУ ТЕКСТ, ПОТІМ МЕДІА (виправлено за вашим пунктом 4) */
+  .support-hero-card__media {
+    order: 1; /* раніше було -1 — змінено, щоб блоки були під текстом */
+  }
+
+  .support-section,
+  .support-section--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .support-main {
+    padding-inline: 5vw;
+  }
+
+  .team-list { gap: 12px; }
+  .team-member {
+    flex: 0 0 60vw;
+    width: 60vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-text {
+    padding-top: 9vh;
+    font-size: 2.4rem;
+  }
+  .team-member {
+    flex: 0 0 80vw;
+    width: 80vw;
+  }
+  .team-avatar-img {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* -----------------------
+   Header & Footer styles
+   (Scoped - не впливають на існуючі стилі)
+   ----------------------- */
+
+.site-header {
+  position: fixed;
+  inset: 12px 0 auto 0;
+  z-index: 40; /* вище за hero і main */
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+  transition: transform .28s ease;
+}
+
+.site-header__inner {
+  width: min(1200px, 94%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Логотип */
+.site-logo__img {
+  display: block;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.25));
+  border-radius: 14px;
+}
+
+/* Навігація (праворуч) */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Загальний вигляд навігаційних кнопок — scoped */
+.site-nav .nav-button,
+.site-nav .nav-cta {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  transition: transform .18s var(--hover-ease), box-shadow .18s ease, background-color .18s ease, color .18s ease;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+}
+
+/* звичайні кнопки (тонкі, підкреслюють стиль сайту) */
+.site-nav .nav-button {
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+.site-nav .nav-button:hover,
+.site-nav .nav-button:focus {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.10);
+  outline: none;
+}
+
+/* CTA — виділена кнопка "Долучитися" */
+.site-nav .nav-cta {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  color: #20103c;
+  box-shadow: var(--shadow-strong);
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+}
+
+/* Toggle button for small screens (keeps isolated) */
+.site-header__toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.site-header__toggle svg rect { fill: rgba(255,255,255,0.95); }
+
+/* Footer */
+.site-footer {
+  margin-top: 60px;
+  padding: 30px 16px;
+  z-index: 6;
+  position: relative;
+
+  /* зменшена видимість/прозорість футера (виконано пункт 3) */
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+}
+.site-footer__inner {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.82); /* трохи менш контрастний / зменшена непрозорість тексту */
+  font-size: 14px;
+}
+
+/* Соціальні іконки */
+.site-footer__right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform .16s var(--hover-ease), background-color .16s ease, box-shadow .16s ease;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.social-link:focus,
+.social-link:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+.social-icon { width: 20px; height: 20px; display: block; fill: currentColor; }
+
+/* IMG used for TikTok icon */
+.social-icon-img { width: 20px; height: 20px; display: block; object-fit: contain; }
+
+/* Footer left text */
+.site-footer__copyright {
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+/* Responsive behavior: collapse nav into toggle on small screens */
+@media (max-width: 880px) {
+  .site-nav { display: none; }
+  .site-header__toggle { display: inline-flex; }
+  .site-header__inner { padding-right: 8px; }
+  .site-header[aria-expanded="true"] .site-nav { display: flex; flex-direction: column; gap: 8px; position: absolute; right: 12px; top: 64px; background: rgba(0,0,0,0.45); padding: 12px; border-radius: 12px; }
+}
+
+/* Не торкаємося інших глобальних кнопок/елементів */

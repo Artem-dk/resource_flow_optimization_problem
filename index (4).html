@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Академія Лідерства — Підтримка України</title>
+
+  <!-- Шрифти -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Стилі -->
+  <link href="styles.css" rel="stylesheet">
+
+  <!-- three.js для хвилі -->
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Пропустити до контенту (skip link для доступності) -->
+  <a class="skip-link" href="#main">Перейти до контенту</a>
+
+  <!-- ======= HEADER (додано) ======= -->
+  <header class="site-header" role="banner" aria-label="Головна навігація">
+    <div class="site-header__inner">
+      <div class="site-logo" aria-hidden="false">
+        <!-- Якщо маєте логотип — замініть src -->
+        <img src="static/logo.png" alt="Академія Лідерства — логотип" class="site-logo__img" width="140" height="48">
+      </div>
+
+      <nav class="site-nav" role="navigation" aria-label="Навігація по сторінці">
+        <a class="nav-link nav-button" href="#direction">Проєкти</a>
+        <a class="nav-link nav-button" href="#actions">Поточний фокус</a>
+        <a class="nav-link nav-button" href="#team">Команда</a>
+        <a class="nav-link nav-cta" href="https://docs.google.com/forms/d/1TXpvTitnPe2jHQttvwXA-uLB7IdLNXIvsugkTPT6KEk/viewform?fbclid=IwY2xjawOS5yJleHRuA2FlbQIxMABicmlkETBRYU9RMEhtQU4yNERMNUJyc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHsMJtBxhuHjSAaLxtkSZnCo97Q5PvzYWTRamS1eVPsTwCoMWvLK-O5TGBzQ9_aem__HdFa4Lk-RqdM-Tw0UR4WQ&edit_requested=true"
+           target="_blank" rel="noopener" role="button">Доєднатися</a>
+      </nav>
+
+      <!-- мобільний "гамбургер" -->
+      <button class="site-header__toggle" aria-expanded="false" aria-controls="site-nav-list" aria-label="Відкрити меню">
+        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="20" height="2" rx="1"></rect>
+          <rect y="5" width="20" height="2" rx="1"></rect>
+          <rect y="10" width="20" height="2" rx="1"></rect>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <!-- ======= /HEADER ======= -->
+
+  <!-- Фонова хвиля (декоративний canvas) -->
+  <canvas id="wave" aria-hidden="true" role="presentation"></canvas>
+
+  <!-- Текст поверх хвилі -->
+  <div class="hero-text">
+    <h1>Напрямок &mdash; Підтримка України</h1>
+  </div>
+
+  <!-- Головний контент сторінки проєктної групи -->
+  <main id="main" class="support-main">
+
+    <!-- 1. Опис напряму -->
+    <section class="support-hero-card">
+      <div class="support-hero-card__content">
+        <p class="support-tag">
+          BEVAR ANIMALS UA • АКАДЕМІЯ ЛІДЕРСТВА
+        </p>
+
+        <h2 class="support-title">
+          Bevar Animals UA
+        </h2>
+
+        <h3 class="support-subtitle">
+          Системна гуманітарна підтримка тварин
+        </h3>
+
+        <p class="support-lead">
+          <strong>Bevar Animals UA</strong> з’явилася як новий стратегічний напрям, створений випускницями
+          Академії лідерства Bevar Ukraine. Наше завдання — забезпечити системну, передбачувану та прозору
+          гуманітарну підтримку тварин, що постраждали від війни.
+        </p>
+
+        <p class="support-text">
+          Ми працюємо з притулками та волонтерськими ініціативами, щоб вони отримували корми, ветеринарні засоби,
+          медикаменти та необхідне обладнання відповідно до реальних потреб. Працюємо чесно, прозоро та з фокусом
+          на довготривалу ефективність.
+        </p>
+      </div>
+
+      <div class="support-hero-card__media">
+        <div class="support-hero-photo-grid">
+          <!-- 4 фотоблоки (мають now-placeholder img, ви підставите свої шляхи) -->
+          <div class="support-hero-photo ph1 has-img" tabindex="0" aria-hidden="false">
+            <img class="support-photo-img" src="images/ph1-placeholder.jpg" alt="Корми та медикаменти — фото">
+            <span>Корми та медикаменти</span>
+          </div>
+          <div class="support-hero-photo ph2 has-img" tabindex="0" aria-hidden="false">
+            <img class="support-photo-img" src="images/ph2-placeholder.jpg" alt="Логістика поставок — фото">
+            <span>Логістика поставок</span>
+          </div>
+          <div class="support-hero-photo ph3 has-img" tabindex="0" aria-hidden="false">
+            <img class="support-photo-img" src="images/ph3-placeholder.jpg" alt="Партнерські притулки — фото">
+            <span>Партнерські притулки</span>
+          </div>
+          <div class="support-hero-photo ph4 has-img" tabindex="0" aria-hidden="false">
+            <img class="support-photo-img" src="images/ph4-placeholder.jpg" alt="Прозора звітність — фото">
+            <span>Прозора звітність</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Чим займається наш напрямок -->
+    <section class="support-section" id="direction">
+      <div class="support-section__content">
+        <h2>Чим займається наш напрямок</h2>
+        <p>
+          <strong>Bevar Animals UA</strong> реалізує повний цикл гуманітарної підтримки тварин. Основні напрями роботи:
+        </p>
+        <ul class="support-list">
+          <li>забезпечення кормами, ветеринарними засобами та медикаментами;</li>
+          <li>логістика гуманітарних вантажів у притулки та польові ініціативи;</li>
+          <li>співпраця з перевіреними партнерами, серед яких: <strong>Sirius</strong> — один із найбільших притулків в Україні; <strong>ГавКіт</strong> — волонтерська ініціатива у прифронтових регіонах;</li>
+          <li>документальне підтвердження кожної поставки (акти, фото, відео);</li>
+          <li>аналіз потреб та пріоритетність допомоги відповідно до ситуації в регіонах.</li>
+        </ul>
+        <p>
+          Цей підхід дозволяє забезпечувати стабільну й адресну підтримку там, де вона найбільш необхідна.
+        </p>
+      </div>
+
+      <div class="support-section__media">
+        <div class="support-section-image img-direction has-img" tabindex="0" aria-hidden="false">
+          <img class="support-section-image__img" src="images/dir-placeholder.jpg" alt="Партнерства і логістика — фото">
+          <div class="support-section-image__label">
+            Партнерства і логістика
+          </div>
+        </div>
+      </div>
+
+      <!-- Дубль CTA: правий-низ секції "direction" -->
+      <a class="support-section-cta nav-cta" href="https://docs.google.com/forms/d/1TXpvTitnPe2jHQttvwXA-uLB7IdLNXIvsugkTPT6KEk/viewform?fbclid=IwY2xjawOS5yJleHRuA2FlbQIxMABicmlkETBRYU9RMEhtQU4yNERMNUJyc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHsMJtBxhuHjSAaLxtkSZnCo97Q5PvzYWTRamS1eVPsTwCoMWvLK-O5TGBzQ9_aem__HdFa4Lk-RqdM-Tw0UR4WQ&edit_requested=true"
+         target="_blank" rel="noopener" role="button" aria-label="Доєднатися">Доєднатися</a>
+    </section>
+
+    <!-- 3. Поточний фокус -->
+    <section class="support-section support-section--reverse" id="actions">
+      <div class="support-section__content">
+        <h2>Поточний фокус</h2>
+
+        <h3>1. Розбудова логістичної інфраструктури</h3>
+        <p>
+          Створення мережі логістичних точок для підвищення ефективності та швидкості доставки гуманітарної допомоги,
+          включно з регіонами підвищеного ризику.
+        </p>
+
+        <h3>2. Регулярна підтримка партнерських притулків</h3>
+        <p>
+          Постійна взаємодія з притулками та ініціативами (Sirius, ГавКіт): збір потреб, формування поставок,
+          координація передачі, контроль документів та звітності.
+        </p>
+
+        <h3>3. Стандартизація процесів та аналітика потреб</h3>
+        <p>
+          Удосконалення моделі розподілу ресурсів, оптимізація логістики та створення прозорої системи звітності
+          для довгострокової ефективності та масштабування напряму.
+        </p>
+      </div>
+
+      <div class="support-section__media">
+        <div class="support-section-image img-actions has-img" tabindex="0" aria-hidden="false">
+          <img class="support-section-image__img" src="images/actions-placeholder.jpg" alt="Логістика та аналітика — фото">
+          <div class="support-section-image__label">
+            Логістика та аналітика
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Склад команди (карусель) -->
+    <section id="team" class="team-section">
+      <div class="team-header">
+        <p class="support-tag">КОМАНДА BEVAR ANIMALS UA</p>
+        <h2>Хто робить Bevar Animals UA?</h2>
+        <p>
+          Наша команда — практики гуманітарної допомоги та аналітики. Нижче — ключові відповідальні учасниці напряму.
+        </p>
+      </div>
+
+      <div class="team-slider">
+        <button class="team-button prev" aria-label="Попередній учасник" type="button" aria-controls="team-list">&#10094;</button>
+
+        <div class="team-window" role="region" aria-label="Слайдер команди" tabindex="0">
+          <div class="team-list" role="list" id="team-list">
+            <div class="team-member" role="listitem">
+              <img src="static/Катерина Кожемякіна - фото на сайт .jpeg"
+                   alt="Катерина Кожемякіна" class="team-avatar-img" loading="lazy" width="400" height="300">
+              <h3>Катерина Кожемякіна</h3>
+              <p class="team-role">керівниця напряму</p>
+              <p class="team-bio">
+                Відповідальності: стратегічне управління напрямом, робота з притулками, аналіз потреб,
+                опрацювання запитів, розвиток партнерств, контроль операцій та координація ключових процесів.
+              </p>
+            </div>
+
+            <div class="team-member" role="listitem">
+              <img src="static/tamara.JPG"
+                   alt="Тамара Мінгалєєва" class="team-avatar-img" loading="lazy" width="400" height="300">
+              <h3>Тамара Мінгалєєва</h3>
+              <p class="team-role">координаторка роботи з притулками</p>
+              <p class="team-bio">
+                Відповідальності: щоденна комунікація з притулками та польовими ініціативами, збір і верифікація запитів,
+                супровід звітності та моніторинг отриманої підтримки.
+              </p>
+            </div>
+
+            <div class="team-member" role="listitem">
+              <img src="static/img/team/katerina_krosenko.jpg"
+                   alt="Катерина Кросенко" class="team-avatar-img" loading="lazy" width="400" height="300">
+              <h3>Катерина Кросенко</h3>
+              <p class="team-role">координаторка аналітики та процесів</p>
+              <p class="team-bio">
+                Відповідальності: аналітика гуманітарних потреб, оптимізація логістичних і внутрішніх процесів,
+                координація операційної взаємодії, підготовка аналітичних матеріалів і внутрішньої звітності.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button class="team-button next" aria-label="Наступний учасник" type="button" aria-controls="team-list">&#10095;</button>
+      </div>
+
+      <p id="team-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
+  </main>
+
+  <!-- ======= FOOTER (додано) ======= -->
+  <footer class="site-footer" role="contentinfo" aria-label="Підвал сайту">
+    <div class="site-footer__inner">
+      <div class="site-footer__left">
+        <p class="site-footer__copyright">© Академія Лідерства — Bevar Animals UA</p>
+      </div>
+
+      <div class="site-footer__right" aria-label="Соціальні мережі">
+        <a class="social-link" href="https://www.instagram.com/leadership_academy_bevar?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram Академії">
+          <svg class="social-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.75-3.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://www.facebook.com/profile.php?id=61582005282988" target="_blank" rel="noopener" aria-label="Facebook Академії">
+          <svg class="social-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2V12h2.2V9.5c0-2.1 1.2-3.2 3-3.2.9 0 1.8.16 1.8.16v2h-1c-1 0-1.3.63-1.3 1.3V12h2.3l-.37 2.9h-1.93v7A10 10 0 0 0 22 12z"/>
+          </svg>
+        </a>
+
+        <!-- ТУТ: заміна SVG на файл-іконку — підкиньте свій static/tiktok.svg -->
+        <a class="social-link" href="https://www.tiktok.com/@bevar_ukraine?_t=ZM-90gEkcB4UDT&_r=1" target="_blank" rel="noopener" aria-label="TikTok Bevar Ukraine">
+          <img src="static/tiktok.svg" alt="TikTok Bevar Ukraine" class="social-icon-img" width="20" height="20">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <!-- ======= /FOOTER ======= -->
+
+  <!-- Скрипти -->
+  <script src="script.js" defer></script>
+</body>
+</html>
